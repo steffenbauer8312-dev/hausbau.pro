@@ -1,0 +1,25 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+*.swo
+*~
+
+# Working files (generated during development)
+*.txt
+char_check_results.txt
+char_lines.txt
+check.txt
+fixlog.txt
+
+# Claude
+.claude/
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
