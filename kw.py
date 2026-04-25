@@ -2,14 +2,15 @@ import sys
 import json
 import urllib.request
 import urllib.error
+import os
 
 BASE_URL = "https://api.dataforseo.com/v3"
-AUTH = "aW5mb0BidWxrc2VlZHNpbnRlcm5hdGlvbmFsLmNvbTo5MzI2YWU1ZWE2MTdkZjAx"
 LOCATION = 2276  # Germany
 LANGUAGE = "de"
 
-APIFY_TOKEN = "apify_api_pn1DvsjI3OJr1klWhA3aI30xrwi0Ct1Ivlr2"
-APIFY_ACTOR = "Sz8kGXrxcp7eDN4J7"
+AUTH = os.environ.get("DATAFORSEO_AUTH", "")
+APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "")
+APIFY_ACTOR = os.environ.get("APIFY_ACTOR", "Sz8kGXrxcp7eDN4J7")
 
 
 def post(endpoint, payload):

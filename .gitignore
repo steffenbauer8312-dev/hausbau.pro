@@ -18,8 +18,8 @@ fixlog.txt
 # Claude
 .claude/
 
-# Dependencies
-node_modules/
+# API keys - never commit
+kw-api.txt
 
 # Build output
 dist/

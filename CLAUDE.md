@@ -85,10 +85,10 @@ python kw.py ubersuggest <keyword>
 - Outputs `kw_results.csv` sorted by search volume
 - Results: 270 keywords with volume > 0 (out of 3260 checked)
 
-**API credentials** (in `kw-api.txt`, also in source):
-- DataForSEO Base64 auth header: `aW5mb0BidWxrc2VlZHNpbnRlcm5hdGlvbmFsLmNvbTo5MzI2YWU1ZWE2MTdkZjAx`
+**API credentials** (in `kw-api.txt` — DO NOT COMMIT):
+- DataForSEO Base64 auth header (from kw-api.txt)
 - Apify Ubersuggest actor: `Sz8kGXrxcp7eDN4J7`
-- Apify token: `apify_api_pn1DvsjI3OJr1klWhA3aI30xrwi0Ct1Ivlr2`
+- Apify token (from kw-api.txt)
 
 ---
 
