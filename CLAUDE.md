@@ -25,15 +25,22 @@ Brand: **hausbau.pro** — Lead-Generierung für Dachdecker und Zimmereien in De
 /js/main.js
 ```
 
-**Active city pages:**
-- `dachdecker/koeln/index.html`
-- `dachdecker/dortmund/index.html`
-- `dachdecker/muenchen/index.html`
-- `dachdecker/duesseldorf/index.html`
-- `dachdecker/leipzig/index.html`
-- `dachdecker/hamburg/index.html`
-- `dachdecker/stuttgart/index.html`
-- `dachdecker/freiburg/index.html`
+**Active city pages (14 per service × 6 services):**
+- `dachdecker/` — München, Köln, Hamburg, Stuttgart, Dortmund, Düsseldorf, Leipzig, Freiburg, Berlin, Frankfurt, Nürnberg, Hannover, Bremen, Mannheim
+- `dachsanierung/`, `zimmermann/`, `dachausbau/`, `dachfenster/`, `flachdach/` — same 14 cities each
+- `dachdecker-preisvergleich/` — separate section with its own 8 city pages
+
+**Other sections:**
+- `blog/` — 9 articles on roofing topics
+- `glossar/` — 16 glossary terms (bitumenbahn, daemmung, dachformen, etc.)
+
+---
+
+## Tech Stack
+
+- Plain HTML/CSS/JS — no framework
+- Form backend: Formspree (placeholder `YOUR_FORM_ID` in all HTML files — user will provide real ID)
+- Fonts: Inter via Google Fonts
 
 ---
 
@@ -57,14 +64,42 @@ Per memory rule. Google and users detect AI-patterns.
 - ✅ Natural German. Filler words and colloquialisms are fine where authentic.
 - ✅ Every page should feel written by a real human for that specific place.
 
+### 3. Do NOT hallucinate city-specific content
+When generating or editing city pages, only use verified local data:
+
+- ✅ Use actual neighborhood names from the city's real data in `gen_service_pages.py`
+- ✅ Use actual PLZ ranges, architecture descriptions, landmarks that exist
+- ❌ Do NOT invent neighborhood names, streets, landmarks, or local facts
+- ❌ Do NOT guess architecture types — if unsure, leave generic or research first
+- When adding new cities: verify neighborhoods and landmarks via web search before generating
+
+The city data in `CITIES` dict (gen_service_pages.py) is the authoritative source. Do not contradict it.
+
 ---
 
-## Tech Stack (Current)
+## Deployment
 
-- Plain HTML/CSS/JS — no framework
-- Hosting: Cloudflare Pages (planned)
-- Form backend: Formspree (placeholder `YOUR_FORM_ID` in all HTML files — user will provide real ID)
-- Fonts: Inter via Google Fonts
+GitHub Actions deploys to Cloudflare Pages on push to `main`:
+```yaml
+# .github/workflows/deploy.yml
+wrangler pages deploy . --project-name=hausbau-pro
+```
+Requires `CLOUDFLARE_API_TOKEN` secret. Manual deploy: `wrangler pages deploy . --project-name=hausbau-pro`
+
+---
+
+## Generating Pages
+
+**`gen_service_pages.py`** — generates all 84 service/city pages (6 services × 14 cities). Uses the rich dachdecker/muenchen template for all pages. Run with `python gen_service_pages.py`.
+
+**`gen_pages.py`** — generates `dachdecker-preisvergleich/{city}/index.html` for 8 cities. Run with `python gen_pages.py`.
+
+---
+
+## Git Workflow
+
+- Branch: `main` — auto-deploys to Cloudflare Pages
+- Commit messages should be descriptive but concise
 
 ---
 
